@@ -1,0 +1,5 @@
+names:
+- pistol
+nc: 1
+train: /home/minjaelee/Desktop/yolov5_folder/dataset/train.txt
+val: /home/minjaelee/Desktop/yolov5_folder/dataset/val.txt
