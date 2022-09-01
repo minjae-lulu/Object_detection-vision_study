@@ -1,3 +1,3 @@
-# Object_detection-vision_study
+# vision_study
 
 study 
