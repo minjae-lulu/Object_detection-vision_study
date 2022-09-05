@@ -1,7 +1,7 @@
 import cv2
 import torch
 
-x = torch.ones(2,2,requires_grad = True) # 미분할수있게 x에 대한 연산들을 추적하게 한다.
+x = torch.tensor(2.0,requires_grad = True) # 미분할수있게 x에 대한 연산들을 추적하게 한다.
 print(x)
 
 y = x + 1
