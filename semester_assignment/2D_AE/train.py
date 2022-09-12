@@ -35,7 +35,36 @@ class Trainer(object):
         self.net = net.to(device)
         self.net.train()
 
-    def vae_loss(self):
+    def vae_loss(self, recon_x, x, mu, logvar):
+        recon_loss = self.binary_cross_entropy(recon_x.view(-1, 256*256*3), x.view(-1, 256*256*3))
+        kldivergence = -0.5* torch.sum(1+ logvar - mu.pow(2) - logvar.exp())
+        return recon_loss + 0.00001 * kldivergence
+
+    def train(self):
+        for epoch in tqdm.tqdm(range(self.epochs + 1)):
+            if epoch % 5 == 0:
+                torch.save(self.net.state_dict(), "_".join(
+                    ['/Users/minjaelee/Desktop/coding/Vision_code/semester_assignment/2D_AE/model', str(epoch),'.pth']))
+
+            for batch_idx, samples in enumerate(self.dataloader):
+                x_train, y_train = samples
+                x_train, y_train = x_train.to(device), y_train.to(device)
+
+                # vae reconstruction
+                image_batch_recon, latent_mu, latent_logvar = self.net(x_train)
+
+                # reconstruction error
+                loss = self.vae_loss(image_batch_recon, x_train, latent_mu, latent_logvar)
+
+                #backpropagation
+                self.optimizer.zero_grad()
+                loss.backward()
+
+                self.optimizer.step()
+
+            print('Epoch [%d / %d] vae loss error: %f' % (epoch + 1, self.epochs, loss))
+        print('Finish training!')
+
 
 if __name__ == '__main__':
     print('test')

@@ -102,9 +102,7 @@ class Decoder(nn.Module):
         img = self.model(input)
         return img.view(img.shape[0], *self.img_shape)
 
-
 class VAE(nn.Module):
-
     def __init__(self):
         super(VAE, self).__init__()
         """Initialize the VAE model"""
