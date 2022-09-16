@@ -18,8 +18,8 @@ if __name__ == '__main__':
     batchSize = 1
     learningRate = 1e-4
 
-    #trainer = Trainer(epochs, batchSize, learningRate)
-    #trainer.train()
+    trainer = Trainer(epochs, batchSize, learningRate)
+    trainer.train()
 
-    tester = Tester(batchSize)
-    tester.test()
+    # tester = Tester(batchSize)
+    # tester.test()

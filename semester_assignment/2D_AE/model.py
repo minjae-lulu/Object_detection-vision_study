@@ -8,7 +8,7 @@ class Encoder(nn.Module):
         super(Encoder, self).__init__()
         self.model = nn.Sequential(
             # State (3x256x256)
-            nn.Conv2d(in_channels=3, out_channels=16, kernel_size=4, stride=2, padding=1),
+            nn.Conv2d(in_channels=1, out_channels=16, kernel_size=4, stride=2, padding=1),
             nn.InstanceNorm2d(16, affine=True),
             nn.LeakyReLU(0.2, inplace=True),
 
@@ -95,7 +95,7 @@ class Decoder(nn.Module):
             nn.LeakyReLU(True),
 
             # State (32x128x128)
-            nn.ConvTranspose2d(in_channels=32, out_channels=3, kernel_size=4, stride=2, padding=1),
+            nn.ConvTranspose2d(in_channels=32, out_channels=1, kernel_size=4, stride=2, padding=1),
             nn.Sigmoid())
 
     def forward(self, input):

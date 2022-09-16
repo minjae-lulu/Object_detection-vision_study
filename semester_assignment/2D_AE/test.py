@@ -50,11 +50,13 @@ class Tester(object):
 
             basic_path = '/Users/minjaelee/Desktop/coding/Vision_code/semester_assignment/2D_AE/result/'
 
+            # permute로 가로 세로 맞게 쌓아주는 역할임
+
             abnomal = utils.compare_images_colab(x_test2[0].clone().permute(1, 2, 0).cpu().detach().numpy(), out2[0].clone().permute(1, 2, 0).cpu().detach().numpy(), None, 0.2)
             cv2.imwrite((basic_path + 'test_%d_ori.png') % batch_idx,
-                        cv2.cvtColor(x_test2[0].clone().permute(1, 2, 0).cpu().detach().numpy(), cv2.COLOR_RGB2BGR))
+                        x_test2[0].clone().permute(1, 2, 0).cpu().detach().numpy())
             cv2.imwrite((basic_path + 'test_%d_gen.png') % batch_idx,
-                        cv2.cvtColor(out2[0].clone().permute(1, 2, 0).cpu().detach().numpy(), cv2.COLOR_RGB2BGR))
+                        out2[0].clone().permute(1, 2, 0).cpu().detach().numpy())
             cv2.imwrite((basic_path + 'test_%d_diff.png') % batch_idx, abnomal)
 
         print('Finish testing!!')
