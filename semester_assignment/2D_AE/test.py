@@ -27,7 +27,8 @@ class Tester(object):
         self.mse_all_img = []
 
         # Load of pretrained_wight
-        weight_PATH = '/Users/minjaelee/Desktop/coding/Vision_code/semester_assignment/2D_AE/model_10_.pth'
+        weight_PATH = '/home/minjaelee/Desktop/coding/Vision_code/semester_assignment/2D_AE/model_1000_.pth'
+        #weight_PATH = '/Users/minjaelee/Desktop/coding/Vision_code/semester_assignment/2D_AE/model_10_.pth'
         self.net.load_state_dict(torch.load(weight_PATH))
 
         print('Testing')
@@ -48,7 +49,8 @@ class Tester(object):
             x_test2 = 256. * x_test
             out2 = 256. * out[0]
 
-            basic_path = '/Users/minjaelee/Desktop/coding/Vision_code/semester_assignment/2D_AE/result/'
+            basic_path= '/home/minjaelee/Desktop/coding/Vision_code/semester_assignment/2D_AE/result/'
+            #basic_path = '/Users/minjaelee/Desktop/coding/Vision_code/semester_assignment/2D_AE/result/'
 
             # permute로 가로 세로 맞게 쌓아주는 역할임
 

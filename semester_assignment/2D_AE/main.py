@@ -14,12 +14,15 @@ from train import Trainer
 import utils
 
 if __name__ == '__main__':
-    epochs = 10
+
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    print("we use ", device, '\n')
+    epochs = 1000
     batchSize = 1
     learningRate = 1e-4
 
-    trainer = Trainer(epochs, batchSize, learningRate)
-    trainer.train()
+    # trainer = Trainer(epochs, batchSize, learningRate)
+    # trainer.train()
 
-    # tester = Tester(batchSize)
-    # tester.test()
+    tester = Tester(batchSize)
+    tester.test()

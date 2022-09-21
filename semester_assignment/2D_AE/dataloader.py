@@ -11,22 +11,24 @@ import pandas
 
 class CustomDataset(Dataset):
     def __init__(self, method= None):
+        
         #self.root = '/Users/minjaelee/Desktop/data/face_jpg/'
-        self.root = '/Users/minjaelee/Desktop/data/mnist_png/'
+        #self.root = '/Users/minjaelee/Desktop/data/mnist_png/'
+        self.root = '/home/minjaelee/Desktop/data/face_jpg/'
         self.x_data = []
         self.y_data = []
 
         if method == 'train':
-            #self.root = self.root + 'training/'
-            self.root = self.root + 'training/*/'
+            self.root = self.root + 'training/'
+            #self.root = self.root + 'training/*/'
         elif method == 'test':
-            #self.root = self.root + 'testing/'
-            self.root = self.root + 'testing/*/'
+            self.root = self.root + 'testing/'
+            #self.root = self.root + 'testing/*/'
 
 
         # jpg인지 png인지 유의바람!!!
-        #self.image_path = sorted(glob(self.root + '*.jpg'))
-        self.image_path = sorted(glob(self.root + '*.png'))
+        self.image_path = sorted(glob(self.root + '*.jpg'))
+        #self.image_path = sorted(glob(self.root + '*.png'))
 
         for i in tqdm.tqdm(range(len(self.image_path))):
             img = cv2.imread(self.image_path[i], cv2.IMREAD_UNCHANGED)

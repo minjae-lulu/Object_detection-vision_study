@@ -42,9 +42,10 @@ class Trainer(object):
 
     def train(self):
         for epoch in tqdm.tqdm(range(self.epochs + 1)):
-            if epoch % 5 == 0:
+            if epoch % 50 == 0:
                 torch.save(self.net.state_dict(), "_".join(
-                    ['/Users/minjaelee/Desktop/coding/Vision_code/semester_assignment/2D_AE/model', str(epoch),'.pth']))
+                    ['/home/minjaelee/Desktop/coding/Vision_code/semester_assignment/2D_AE/model', str(epoch),'.pth']))
+                    #['/Users/minjaelee/Desktop/coding/Vision_code/semester_assignment/2D_AE/model', str(epoch),'.pth']))
 
             for batch_idx, samples in enumerate(self.dataloader):
                 x_train, y_train = samples
