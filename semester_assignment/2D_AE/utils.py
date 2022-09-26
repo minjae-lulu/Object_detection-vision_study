@@ -24,3 +24,5 @@ def compare_images_colab(real_img, generated_img, data, threshold = 0.4):
 
     return anomaly_img
 
+
+

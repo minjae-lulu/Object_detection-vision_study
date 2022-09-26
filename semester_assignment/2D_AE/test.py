@@ -27,7 +27,7 @@ class Tester(object):
         self.mse_all_img = []
 
         # Load of pretrained_wight
-        weight_PATH = '/home/minjaelee/Desktop/coding/Vision_code/semester_assignment/2D_AE/model_1000_.pth'
+        weight_PATH = '/home/minjaelee/Desktop/coding/Vision_code/semester_assignment/2D_AE/model_5_.pth'
         #weight_PATH = '/Users/minjaelee/Desktop/coding/Vision_code/semester_assignment/2D_AE/model_10_.pth'
         self.net.load_state_dict(torch.load(weight_PATH))
 
