@@ -26,9 +26,11 @@ class Trainer(object):
         dataset = CustomDataset(method = 'train')
         self.root = dataset.root
         self.dataloader = DataLoader(dataset, batch_size=self.batch_size, shuffle=True)
-        self.optimizer = torch.optim.Adam(self.net.parameters(), lr=self.learning_rate, betas=(0.9, 0.999))
+        self.optimizer = torch.optim.Adam(self.net.parameters(), lr = self.learning_rate, betas=(0.9, 0.999))
 
         print("Training...")
+
+    
 
     def _build_model(self):
         net = VAE()
@@ -37,8 +39,9 @@ class Trainer(object):
 
     def vae_loss(self, recon_x, x, mu, logvar):
         recon_loss = self.binary_cross_entropy(recon_x.view(-1, 256*256*3), x.view(-1, 256*256*3))
-        kldivergence = -0.5* torch.sum(1+ logvar - mu.pow(2) - logvar.exp())
-        return recon_loss + 0.00001 * kldivergence
+        kldivergence = -0.5 * torch.sum(1+ logvar - mu.pow(2) - logvar.exp())
+        #return recon_loss + 0.00001 * kldivergence  # more close average distribution
+        return recon_loss + 0.0000001 * kldivergence # more close original
 
     def train(self):
         for epoch in tqdm.tqdm(range(self.epochs + 1)):
@@ -57,10 +60,11 @@ class Trainer(object):
                 # reconstruction error
                 loss = self.vae_loss(image_batch_recon, x_train, latent_mu, latent_logvar)
 
-                #backpropagation
+                # backpropagation
                 self.optimizer.zero_grad()
                 loss.backward()
 
+                # one step of the optimizer (using the gradients from backpropagation)
                 self.optimizer.step()
 
             print('Epoch [%d / %d] vae loss error: %f' % (epoch + 1, self.epochs, loss))

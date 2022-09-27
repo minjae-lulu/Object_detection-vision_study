@@ -107,7 +107,6 @@ class Decoder(nn.Module):
 class VAE(nn.Module):
     def __init__(self):
         super(VAE, self).__init__()
-        """Initialize the VAE model"""
         img_size = (3, 256, 256)
         latent = 100
 
