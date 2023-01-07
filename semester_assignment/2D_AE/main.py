@@ -9,7 +9,7 @@ import torch.nn.functional as F
 from glob import glob
 import pandas
 from dataloader import CustomDataset
-from test import Tester
+from score import Tester
 from train import Trainer
 import utils
 
